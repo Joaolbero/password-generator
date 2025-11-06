@@ -1,3 +1,4 @@
+import pyperclip
 import string
 import random
 
@@ -30,7 +31,9 @@ usar_minusculas = input("Incluir letras minúsculas? (s/n): ").lower() == "s"
 usar_numeros = input("Incluir números? (s/n): ").lower() == "s"
 usar_simbolos = input("Incluir símbolos? (s/n): ").lower() == "s"
 
-print("\nSenhas geradas:")
+print("\nSenhas geradas:\n")
+
+senhas = []
 
 for _ in range(quantidade):
     senha_gerada = gerar_senha(
@@ -40,4 +43,9 @@ for _ in range(quantidade):
         usar_numeros,
         usar_simbolos
     )
+    senhas.append(senha_gerada)
     print(senha_gerada)
+
+if quantidade == 1:
+    pyperclip.copy(senhas[0])
+    print("\n✅ Senha copiada para a área de transferência!")
