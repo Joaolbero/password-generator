@@ -162,11 +162,11 @@ def interactive_configurar():
         tamanho = pedir_int("Tamanho da senha (recomendado 12+): ", minimo=4, maximo=256)
         quantidade = pedir_int("Quantidade de senhas: ", minimo=1, maximo=1000)
 
-        mai = pedir_bool("Incluir MAIÚSCULAS?", default=_last_config["maiusculas"])
-        minusc = pedir_bool("Incluir minúsculas?", default=_last_config["minusculas"])
-        nums = pedir_bool("Incluir números?", default=_last_config["numeros"])
-        sims = pedir_bool("Incluir símbolos?", default=_last_config["simbolos"])
-        evitar = pedir_bool("Evitar caracteres ambíguos?", default=_last_config["evitar_ambig"])
+        mai = pedir_bool("Incluir Maiúsculas?", default=_last_config["maiusculas"])
+        minusc = pedir_bool("Incluir Minúsculas?", default=_last_config["minusculas"])
+        nums = pedir_bool("Incluir Números?", default=_last_config["numeros"])
+        sims = pedir_bool("Incluir Símbolos?", default=_last_config["simbolos"])
+        evitar = pedir_bool("Evitar Caracteres ambíguos?", default=_last_config["evitar_ambig"])
 
         if not any([mai, minusc, nums, sims]):
             console.print("[red]⚠ Você precisa selecionar pelo menos UM critério (maiúsculas/minúsculas/números/símbolos).[/red]")
