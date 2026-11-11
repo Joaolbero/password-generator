@@ -191,19 +191,19 @@ def cli_args():
     parser.add_argument("--tamanho", type=int, help="Tamanho da senha (ex: 16)")
     parser.add_argument("--quantidade", type=int, default=1, help="Quantas senhas gerar")
 
-    parser.add_argument("--maiusculas", dest="maiusculas", action="store_true", help="Incluir letras maiúsculas")
-    parser.add_argument("--no-maiusculas", dest="maiusculas", action="store_false", help="Excluir letras maiúsculas")
+    parser.add_argument("--maiusculas", dest="maiusculas", action="store_true", default=None, help="Incluir letras maiúsculas")
+    parser.add_argument("--no-maiusculas", dest="maiusculas", action="store_false", default=None, help="Excluir letras maiúsculas")
 
-    parser.add_argument("--minusculas", dest="minusculas", action="store_true", help="Incluir letras minúsculas")
-    parser.add_argument("--no-minusculas", dest="minusculas", action="store_false", help="Excluir letras minúsculas")
+    parser.add_argument("--minusculas", dest="minusculas", action="store_true", default=None, help="Incluir letras minúsculas")
+    parser.add_argument("--no-minusculas", dest="minusculas", action="store_false", default=None, help="Excluir letras minúsculas")
 
-    parser.add_argument("--numeros", dest="numeros", action="store_true", help="Incluir números")
-    parser.add_argument("--no-numeros", dest="numeros", action="store_false", help="Excluir números")
+    parser.add_argument("--numeros", dest="numeros", action="store_true", default=None, help="Incluir números")
+    parser.add_argument("--no-numeros", dest="numeros", action="store_false", default=None, help="Excluir números")
 
-    parser.add_argument("--simbolos", dest="simbolos", action="store_true", help="Incluir símbolos")
-    parser.add_argument("--no-simbolos", dest="simbolos", action="store_false", help="Excluir símbolos")
+    parser.add_argument("--simbolos", dest="simbolos", action="store_true", default=None, help="Incluir símbolos")
+    parser.add_argument("--no-simbolos", dest="simbolos", action="store_false", default=None, help="Excluir símbolos")
 
-    parser.add_argument("--evitar-ambig", dest="evitar_ambig", action="store_true", help="Evitar caracteres ambíguos")
+    parser.add_argument("--evitar-ambig", dest="evitar_ambig", action="store_true", default=None, help="Evitar caracteres ambíguos")
     parser.add_argument("--copiar", dest="copiar", action="store_true", help="Copiar resultado para a área de transferência")
     parser.add_argument("--salvar", type=str, help="Salvar em arquivo (ex: senhas.txt)")
 
@@ -225,13 +225,14 @@ def main():
         minusc = args.minusculas if args.minusculas is not None else DEFAULTS["minusculas"]
         nums = args.numeros if args.numeros is not None else DEFAULTS["numeros"]
         sims = args.simbolos if args.simbolos is not None else DEFAULTS["simbolos"]
+        evitar_ambig = args.evitar_ambig if args.evitar_ambig is not None else DEFAULTS["evitar_ambig"]
 
         # Blindagem: requer pelo menos um critério ativo
         if not any([mai, minusc, nums, sims]):
             console.print("[red]⚠ Pelo menos um critério precisa estar ativo (maiúsculas/minúsculas/números/símbolos).[/red]")
             return
 
-        executar_geracao(tamanho, quantidade, mai, minusc, nums, sims, args.evitar_ambig, args.copiar, args.salvar)
+        executar_geracao(tamanho, quantidade, mai, minusc, nums, sims, evitar_ambig, args.copiar, args.salvar)
         return
 
     # Sem argumentos -> Menu Hackerman
